@@ -29,14 +29,34 @@ def createTestValidationSet(dataSet,classIdentifiers):
     return testValidationSet
 
 def train(trainingSet,trainingValidation):
-    return 0
+    trainingSet=trainingSet.drop('class',1)
+    weightMatrix=np.linalg.inv(np.transpose(trainingSet).dot(trainingSet)-error).dot(np.transpose(trainingSet)).dot(trainingValidationSet)
+    return weightMatrix
 def test(weightMatrix,testSet,testValidation):
-    return 0
+    testingSet=testingSet.drop('class',1)
+    predictionSet=testingSet.dot(weightMatrix)
+    predictionOutputSet=np.zeros((1,len(testingSet)))
+    trueOutputSet=np.zeros((1,len(testingSet)))
+    i=0
+    for index, row in predictionSet.iterrows():
+        predictionOutputSet[0][i]=row.idxmax(1)
+        i=i+1
+    i=0
+    for index, row in testingValidationSet.iterrows():
+        j=0
+        for columns in row:
+            if(columns==1):
+                trueOutputSet[0][i]=j
+            j=j+1
+        i=i+1
+    return predictionOutputSet,trueOutputSet
 def crossValidation(weightMatrix,testSet,testValidation):
     return 0
 
-trainSet,testingSet=createTrainingTestSets('IrisInfo.txt',10)
-trainingValidationSet=createTrainingValidationSet(trainSet,['Iris-setosa','Iris-versicolor','Iris-virginica'])
+trainingSet,testingSet=createTrainingTestSets('IrisInfo.txt',50)
+trainingValidationSet=createTrainingValidationSet(trainingSet,['Iris-setosa','Iris-versicolor','Iris-virginica'])
 testingValidationSet=createTestValidationSet(testingSet,['Iris-setosa','Iris-versicolor','Iris-virginica'])
-print(trainingValidationSet)
-print(testingValidationSet)
+weightMatrix=train(trainingSet,trainingValidationSet,0)
+predictionOutputSet,trueOutputSet=test(weightMatrix,testingSet,testingValidationSet)
+print(predictionOutputSet)
+print(trueOutputSet)
