@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import random
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_score
 
 def createTrainingTestSets(fileName, numberOfEntriesForTrainingSet,seed):
     np.random.seed(seed)
@@ -54,18 +55,30 @@ def test(weightMatrix,testingSet,testingValidationSet):
             j=j+1
         i=i+1
     return trueOutputSet,predictionOutputSet
+def findError(trueOutputSet,predictedOutputSet):
+    error=0
+    for i in range(0,len(trueOutputSet[0])):
+        if(trueOutputSet[0][i]!=predictedOutputSet[0][i]):
+            error=error+1
+    return error/len(trueOutputSet[0])
+def confuseMatrix(true, predict):
+   confused = confusion_matrix(true[0, :], predict[0, :])
+   precision = precision_score(true[0, :], predict[0, :], average = None)
+   return confused, precision
 
 def findOptimumTrainingSet(fileName,classIdentifiers,numberOfEntriesForTrainingSet,numberOfIterations):
-    print('Optimizing training set...')
     minimumErrorTrainingSet=0
     minimumErrorTestSet=0
     minimumError=1
+    confusionMatrix=0
+    precision_score=0
+    freeParameter=0
     for i in range(0,numberOfIterations):
+        print('Iteration '+str(i)+' of '+str(numberOfIterations))
         trainingSet,testingSet=createTrainingTestSets(fileName,numberOfEntriesForTrainingSet,random.randint(0,numberOfIterations*numberOfIterations))
         trainingValidationSet=createTrainingValidationSet(trainingSet,classIdentifiers)
         testingValidationSet=createTestValidationSet(testingSet,classIdentifiers)
-        for j in range(0,100):
-            print('Iteration ', i, ' of ', numberOfIterations, ', Cycle ', j, ' of ', 100)
+        for j in range(0,100,2):
             weightMatrix=train(trainingSet,trainingValidationSet,j/100)
             trueOutputSet, predictionOutputSet = test(weightMatrix, testingSet, testingValidationSet)
             currentError=findError(trueOutputSet,predictionOutputSet)
@@ -73,21 +86,17 @@ def findOptimumTrainingSet(fileName,classIdentifiers,numberOfEntriesForTrainingS
                 minimumError = currentError
                 minimumErrorTrainingSet=trainingSet
                 minimumErrorTestSet=testingSet
-    print(minimumError)
-    return minimumErrorTrainingSet,minimumErrorTestSet
+                freeParameter=i
+                confusionMatrix,precision_score=confuseMatrix(trueOutputSet,predictionOutputSet)
+    return minimumErrorTrainingSet,minimumErrorTestSet,freeParameter,confusionMatrix,precision_score
 
-def findError(trueOutputSet,predictedOutputSet):
-    error=0
-    for i in range(0,len(trueOutputSet[0])):
-        if(trueOutputSet[0][i]!=predictedOutputSet[0][i]):
-            error=error+1
-    return error/len(trueOutputSet[0])
-
-def confusionMatrix(true, predicted):
-    confused = confusion_matrix(true, predicted)
-    print("Confusion Matrix:\n\n")
-    print(confused)
-    return confused
-
-
-findOptimumTrainingSet('./DataSets/IrisInfo.txt',['Iris-setosa','Iris-versicolor','Iris-virginica'],15,500)
+dataText='IrisInfo'
+classesToIdentify=['Iris-setosa','Iris-versicolor','Iris-virginica']
+sampleSize=20
+numberOfIterations=50
+trainingSet,testSet,freeParameter,confusionMatrix,precision_score=findOptimumTrainingSet(dataText,classesToIdentify,sampleSize,numberOfIterations)
+trainingSet.to_csv(dataText+'_trainingSet',sep='\t')
+testSet.to_csv(dataText+'_testSet',sep='\t')
+np.savetxt(dataText+'_confusionMatrix',confusionMatrix,delimiter=',')
+np.savetxt(dataText+'_precision_score',precision_score,delimiter=',')
+print('FreeParameter: '+str(freeParameter/100))
