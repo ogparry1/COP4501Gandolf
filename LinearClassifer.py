@@ -60,11 +60,11 @@ def findOptimumTrainingSet(fileName,classIdentifiers,numberOfEntriesForTrainingS
     minimumErrorTestSet=0
     minimumError=1
     for i in range(0,numberOfIterations):
-        trainingSet,testingSet=createTrainingTestSets(fileName,numberOfEntriesForTrainingSet,random.randint(0,20))
+        trainingSet,testingSet=createTrainingTestSets(fileName,numberOfEntriesForTrainingSet,random.randint(0,numberOfIterations*numberOfIterations))
         trainingValidationSet=createTrainingValidationSet(trainingSet,classIdentifiers)
         testingValidationSet=createTestValidationSet(testingSet,classIdentifiers)
         for i in range(0,100):
-            weightMatrix=train(trainingSet,trainingValidationSet,i/1000)
+            weightMatrix=train(trainingSet,trainingValidationSet,i/100)
             trueOutputSet, predictionOutputSet = test(weightMatrix, testingSet, testingValidationSet)
             currentError=findError(trueOutputSet,predictionOutputSet)
             if(currentError<minimumError):
@@ -88,4 +88,4 @@ def confusionMatrix(true, predicted):
     return confused
 
 
-findOptimumTrainingSet('IrisInfo.txt',['Iris-setosa','Iris-versicolor','Iris-virginica'],15,500)
+findOptimumTrainingSet('./Iris/IrisInfo.txt',['Iris-setosa','Iris-versicolor','Iris-virginica'],15,500)
