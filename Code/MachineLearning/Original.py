@@ -56,6 +56,7 @@ def test(weightMatrix,testingSet,testingValidationSet):
     return trueOutputSet,predictionOutputSet
 
 def findOptimumTrainingSet(fileName,classIdentifiers,numberOfEntriesForTrainingSet,numberOfIterations):
+    print('Optimizing training set...')
     minimumErrorTrainingSet=0
     minimumErrorTestSet=0
     minimumError=1
@@ -63,8 +64,9 @@ def findOptimumTrainingSet(fileName,classIdentifiers,numberOfEntriesForTrainingS
         trainingSet,testingSet=createTrainingTestSets(fileName,numberOfEntriesForTrainingSet,random.randint(0,numberOfIterations*numberOfIterations))
         trainingValidationSet=createTrainingValidationSet(trainingSet,classIdentifiers)
         testingValidationSet=createTestValidationSet(testingSet,classIdentifiers)
-        for i in range(0,100):
-            weightMatrix=train(trainingSet,trainingValidationSet,i/100)
+        for j in range(0,100):
+            print('Iteration ', i, ' of ', numberOfIterations, ', Cycle ', j, ' of ', 100)
+            weightMatrix=train(trainingSet,trainingValidationSet,j/100)
             trueOutputSet, predictionOutputSet = test(weightMatrix, testingSet, testingValidationSet)
             currentError=findError(trueOutputSet,predictionOutputSet)
             if(currentError<minimumError):

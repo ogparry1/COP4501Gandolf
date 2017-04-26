@@ -88,4 +88,4 @@ def confusionMatrix(true, predicted):
     return confused
 
 
-findOptimumTrainingSet('./DataSets/txt/IrisInfo.txt',['Iris-setosa','Iris-versicolor','Iris-virginica'],15,500)
+findOptimumTrainingSet('./DataSets/Wholesale.txt',[1, 2, 3], 15, 500)
