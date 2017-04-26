@@ -1,0 +1,224 @@
+% LungCancer Dataset.
+X = lungMeas;
+Y = lungType;
+Mdl = fitcecoc(X,Y)
+
+Mdl = 
+
+  <a href="matlab: helpPopup ClassificationECOC">ClassificationECOC</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: {'Type1'  'Type2'  'Type3'}
+           ScoreTransform: 'none'
+           BinaryLearners: {3x1 cell}
+               CodingName: 'onevsone'
+
+
+  <a href="matlab: properties('ClassificationECOC')">Properties</a>, <a href="matlab: methods('ClassificationECOC')">Methods</a>
+
+Mdl.BinaryLearners{1}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: -4.5277
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{2}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: -0.5335
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{3}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: 1.1273
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+resubLoss(Mdl)
+
+ans =
+
+     0
+
+CVMdl = crossval(Mdl)
+[Warning: One or more folds do not contain points from all the groups.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition>stra_kfoldcv', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 535)" style="font-weight:bold">cvpartition>stra_kfoldcv</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',535,0)">line 535</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition/rerandom', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 461)" style="font-weight:bold">cvpartition/rerandom</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',461,0)">line 461</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 197)" style="font-weight:bold">cvpartition</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.generator.Partitioner', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+generator\Partitioner.m', 39)" style="font-weight:bold">classreg.learning.generator.Partitioner</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+generator\Partitioner.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.EnsembleParams/makeGenerator', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m', 348)" style="font-weight:bold">classreg.learning.modelparams.EnsembleParams/makeGenerator</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m',348,0)">line 348</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.EnsembleParams/fillDefaultParams', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m', 580)" style="font-weight:bold">classreg.learning.modelparams.EnsembleParams/fillDefaultParams</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m',580,0)">line 580</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.ModelParams/fillIfNeeded', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\ModelParams.m', 93)" style="font-weight:bold">classreg.learning.modelparams.ModelParams/fillIfNeeded</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\ModelParams.m',93,0)">line 93</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.classif.FullClassificationModel', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\FullClassificationModel.m', 35)" style="font-weight:bold">classreg.learning.classif.FullClassificationModel</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\FullClassificationModel.m',35,0)">line 35</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.classif.ClassificationEnsemble', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\ClassificationEnsemble.m', 68)" style="font-weight:bold">classreg.learning.classif.ClassificationEnsemble</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\ClassificationEnsemble.m',68,0)">line 68</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.partition.ClassificationPartitionedModel', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedModel.m', 159)" style="font-weight:bold">classreg.learning.partition.ClassificationPartitionedModel</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedModel.m',159,0)">line 159</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.partition.ClassificationPartitionedECOC', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedECOC.m', 163)" style="font-weight:bold">classreg.learning.partition.ClassificationPartitionedECOC</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedECOC.m',163,0)">line 163</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.FitTemplate/fit', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\FitTemplate.m', 251)" style="font-weight:bold">classreg.learning.FitTemplate/fit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\FitTemplate.m',251,0)">line 251</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ClassificationECOC/crossval', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\ClassificationECOC.m', 242)" style="font-weight:bold">ClassificationECOC/crossval</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\ClassificationECOC.m',242,0)">line 242</a>)] 
+
+CVMdl = 
+
+  <a href="matlab: helpPopup classreg.learning.partition.ClassificationPartitionedECOC">classreg.learning.partition.ClassificationPartitionedECOC</a>
+    CrossValidatedModel: 'ECOC'
+         PredictorNames: {1x56 cell}
+           ResponseName: 'Y'
+        NumObservations: 32
+                  KFold: 10
+              Partition: [1x1 cvpartition]
+             ClassNames: {'Type1'  'Type2'  'Type3'}
+         ScoreTransform: 'none'
+
+
+  <a href="matlab: properties('classreg.learning.partition.ClassificationPartitionedECOC')">Properties</a>, <a href="matlab: methods('classreg.learning.partition.ClassificationPartitionedECOC')">Methods</a>
+
+kfoldLoss(CVMdl)
+
+ans =
+
+    0.5938
+
+Mdl = fitcecoc(X,Y,'Coding','onevsall')
+
+Mdl = 
+
+  <a href="matlab: helpPopup ClassificationECOC">ClassificationECOC</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: {'Type1'  'Type2'  'Type3'}
+           ScoreTransform: 'none'
+           BinaryLearners: {3x1 cell}
+               CodingName: 'onevsall'
+
+
+  <a href="matlab: properties('ClassificationECOC')">Properties</a>, <a href="matlab: methods('ClassificationECOC')">Methods</a>
+
+Mdl.BinaryLearners{1}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: -5.6876
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{2}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: 3.3645
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{3}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x56 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [56x1 double]
+                     Bias: -1.0104
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+resubLoss(Mdl)
+
+ans =
+
+     0
+
+CVMdl = crossval(Mdl)
+[Warning: One or more folds do not contain points from all the groups.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition>stra_kfoldcv', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 535)" style="font-weight:bold">cvpartition>stra_kfoldcv</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',535,0)">line 535</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition/rerandom', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 461)" style="font-weight:bold">cvpartition/rerandom</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',461,0)">line 461</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cvpartition', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m', 197)" style="font-weight:bold">cvpartition</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\stats\cvpartition.m',197,0)">line 197</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.generator.Partitioner', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+generator\Partitioner.m', 39)" style="font-weight:bold">classreg.learning.generator.Partitioner</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+generator\Partitioner.m',39,0)">line 39</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.EnsembleParams/makeGenerator', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m', 348)" style="font-weight:bold">classreg.learning.modelparams.EnsembleParams/makeGenerator</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m',348,0)">line 348</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.EnsembleParams/fillDefaultParams', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m', 580)" style="font-weight:bold">classreg.learning.modelparams.EnsembleParams/fillDefaultParams</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\EnsembleParams.m',580,0)">line 580</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.modelparams.ModelParams/fillIfNeeded', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\ModelParams.m', 93)" style="font-weight:bold">classreg.learning.modelparams.ModelParams/fillIfNeeded</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+modelparams\ModelParams.m',93,0)">line 93</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.classif.FullClassificationModel', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\FullClassificationModel.m', 35)" style="font-weight:bold">classreg.learning.classif.FullClassificationModel</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\FullClassificationModel.m',35,0)">line 35</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.classif.ClassificationEnsemble', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\ClassificationEnsemble.m', 68)" style="font-weight:bold">classreg.learning.classif.ClassificationEnsemble</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+classif\ClassificationEnsemble.m',68,0)">line 68</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.partition.ClassificationPartitionedModel', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedModel.m', 159)" style="font-weight:bold">classreg.learning.partition.ClassificationPartitionedModel</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedModel.m',159,0)">line 159</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.partition.ClassificationPartitionedECOC', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedECOC.m', 163)" style="font-weight:bold">classreg.learning.partition.ClassificationPartitionedECOC</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\+partition\ClassificationPartitionedECOC.m',163,0)">line 163</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('classreg.learning.FitTemplate/fit', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\FitTemplate.m', 251)" style="font-weight:bold">classreg.learning.FitTemplate/fit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\+classreg\+learning\FitTemplate.m',251,0)">line 251</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ClassificationECOC/crossval', 'C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\ClassificationECOC.m', 242)" style="font-weight:bold">ClassificationECOC/crossval</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\stats\classreg\ClassificationECOC.m',242,0)">line 242</a>)] 
+
+CVMdl = 
+
+  <a href="matlab: helpPopup classreg.learning.partition.ClassificationPartitionedECOC">classreg.learning.partition.ClassificationPartitionedECOC</a>
+    CrossValidatedModel: 'ECOC'
+         PredictorNames: {1x56 cell}
+           ResponseName: 'Y'
+        NumObservations: 32
+                  KFold: 10
+              Partition: [1x1 cvpartition]
+             ClassNames: {'Type1'  'Type2'  'Type3'}
+         ScoreTransform: 'none'
+
+
+  <a href="matlab: properties('classreg.learning.partition.ClassificationPartitionedECOC')">Properties</a>, <a href="matlab: methods('classreg.learning.partition.ClassificationPartitionedECOC')">Methods</a>
+
+kfoldLoss(CVMdl)
+
+ans =
+
+    0.5000
+
+diary off

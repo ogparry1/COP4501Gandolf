@@ -1,0 +1,196 @@
+% Wine Dataset.
+X = wineMeas;
+Y = wineType;
+Mdl = fitcecoc(X,Y)
+
+Mdl = 
+
+  <a href="matlab: helpPopup ClassificationECOC">ClassificationECOC</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: {'Type1'  'Type2'  'Type3'}
+           ScoreTransform: 'none'
+           BinaryLearners: {3x1 cell}
+               CodingName: 'onevsone'
+
+
+  <a href="matlab: properties('ClassificationECOC')">Properties</a>, <a href="matlab: methods('ClassificationECOC')">Methods</a>
+
+Mdl.BinaryLearners{1}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: -20.0207
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{2}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: -4.6639
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{3}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: 13.2457
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+resubLoss(Mdl)
+
+ans =
+
+    0.0056
+
+CVMdl = crossval(Mdl)
+
+CVMdl = 
+
+  <a href="matlab: helpPopup classreg.learning.partition.ClassificationPartitionedECOC">classreg.learning.partition.ClassificationPartitionedECOC</a>
+    CrossValidatedModel: 'ECOC'
+         PredictorNames: {1x13 cell}
+           ResponseName: 'Y'
+        NumObservations: 178
+                  KFold: 10
+              Partition: [1x1 cvpartition]
+             ClassNames: {'Type1'  'Type2'  'Type3'}
+         ScoreTransform: 'none'
+
+
+  <a href="matlab: properties('classreg.learning.partition.ClassificationPartitionedECOC')">Properties</a>, <a href="matlab: methods('classreg.learning.partition.ClassificationPartitionedECOC')">Methods</a>
+
+kfoldLoss(CVMdl)
+
+ans =
+
+    0.0449
+
+Mdl = fitcecoc(X,Y,'Coding','onevsall')
+
+Mdl = 
+
+  <a href="matlab: helpPopup ClassificationECOC">ClassificationECOC</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: {'Type1'  'Type2'  'Type3'}
+           ScoreTransform: 'none'
+           BinaryLearners: {3x1 cell}
+               CodingName: 'onevsall'
+
+
+  <a href="matlab: properties('ClassificationECOC')">Properties</a>, <a href="matlab: methods('ClassificationECOC')">Methods</a>
+
+Mdl.BinaryLearners{1}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: -18.5337
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{2}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: 23.2209
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+Mdl.BinaryLearners{3}
+
+ans = 
+
+  <a href="matlab: helpPopup classreg.learning.classif.CompactClassificationSVM">classreg.learning.classif.CompactClassificationSVM</a>
+           PredictorNames: {1x13 cell}
+             ResponseName: 'Y'
+    CategoricalPredictors: []
+               ClassNames: [-1 1]
+           ScoreTransform: 'none'
+                     Beta: [13x1 double]
+                     Bias: -6.6370
+         KernelParameters: [1x1 struct]
+
+
+  <a href="matlab: properties('classreg.learning.classif.CompactClassificationSVM')">Properties</a>, <a href="matlab: methods('classreg.learning.classif.CompactClassificationSVM')">Methods</a>
+
+resubLoss(Mdl)
+
+ans =
+
+    0.0056
+
+CVMdl = crossval(Mdl)
+
+CVMdl = 
+
+  <a href="matlab: helpPopup classreg.learning.partition.ClassificationPartitionedECOC">classreg.learning.partition.ClassificationPartitionedECOC</a>
+    CrossValidatedModel: 'ECOC'
+         PredictorNames: {1x13 cell}
+           ResponseName: 'Y'
+        NumObservations: 178
+                  KFold: 10
+              Partition: [1x1 cvpartition]
+             ClassNames: {'Type1'  'Type2'  'Type3'}
+         ScoreTransform: 'none'
+
+
+  <a href="matlab: properties('classreg.learning.partition.ClassificationPartitionedECOC')">Properties</a>, <a href="matlab: methods('classreg.learning.partition.ClassificationPartitionedECOC')">Methods</a>
+
+kfoldLoss(CVMdl)
+
+ans =
+
+    0.0337
+
+diary off
